@@ -1,5 +1,6 @@
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin    = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -33,6 +34,11 @@ module.exports = {
     new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: 'assets/css/[name].css',
-    })
+    }),
+    new HtmlWebpackPlugin({
+      template: `${__dirname}/src/index.html`,
+      filename: `${__dirname}/docs/index.html`,
+      inject: 'head'
+    }),
   ]
 }
