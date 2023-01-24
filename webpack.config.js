@@ -56,7 +56,14 @@ module.exports = {
           },
           'ejs-plain-loader'
         ],
-      }
+      },
+      {
+				test: /\.(png|jpe?g|gif|svg)$/i,
+				generator: {
+					filename: `./assets/[name].[contenthash][ext]`,
+				},
+				type: 'asset/resource',
+			}
     ]
   },
   plugins: [
