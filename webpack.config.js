@@ -1,5 +1,5 @@
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin    = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
 
@@ -28,7 +28,7 @@ module.exports = {
   entry: entries(['./src/js/*.js', './src/css/*.css']),
   output: {
     path: `${__dirname}/docs`,
-    filename: "./js/[name].js",
+    filename: './js/[name].js',
     clean: true
   },
   module: {
@@ -38,7 +38,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true,
             },
@@ -49,12 +49,12 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
+            loader: 'html-loader',
             options: {
               minimize: true
             }
           },
-          "ejs-plain-loader"
+          'ejs-plain-loader'
         ],
       }
     ]
