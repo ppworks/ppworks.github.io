@@ -3,13 +3,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin    = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
 
-const entries = (src, options = {}) => {
+const entries = (srcList) => {
   const path = require('path');
-  return WebpackWatchedGlobEntries.getEntries([path.resolve(__dirname, src)], options)();
+  sources = Object.values(srcList).map((src) =>
+    path.resolve(__dirname, src)
+  );
+  return WebpackWatchedGlobEntries.getEntries(sources, {
+    ignore: path.resolve(__dirname, './src/**/_*')
+  })();
 };
 
 const htmlGlobPlugins = () => {
-  const htmlEntries = entries('./src/*.html');
+  const htmlEntries = entries(['./src/*.html']);
   return Object.keys(htmlEntries).map((key) =>
     new HtmlWebpackPlugin({
       inject: 'head',
@@ -21,10 +26,7 @@ const htmlGlobPlugins = () => {
 };
 
 module.exports = {
-  entry: {
-    main: './src/main.js',
-    style: './src/style.css'
-  },
+  entry: entries(['./src/*.js', './src/*.css']),
   output: {
     path: `${__dirname}/docs`,
     filename: "./assets/js/[name].js",
@@ -62,7 +64,7 @@ module.exports = {
     new RemoveEmptyScriptsPlugin(),
     new WebpackWatchedGlobEntries(),
     new MiniCssExtractPlugin({
-      filename: 'assets/css/[name].css',
+      filename: './assets/css/[name].css',
     }),
     ...htmlGlobPlugins()
   ]
