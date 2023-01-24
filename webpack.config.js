@@ -25,10 +25,10 @@ const htmlGlobPlugins = () => {
 };
 
 module.exports = {
-  entry: entries(['./src/*.js', './src/*.css']),
+  entry: entries(['./src/js/*.js', './src/css/*.css']),
   output: {
     path: `${__dirname}/docs`,
-    filename: "./assets/js/[name].js",
+    filename: "./js/[name].js",
     clean: true
   },
   module: {
@@ -63,7 +63,7 @@ module.exports = {
     new RemoveEmptyScriptsPlugin(),
     new WebpackWatchedGlobEntries(),
     new MiniCssExtractPlugin({
-      filename: './assets/css/[name].css',
+      filename: './css/[name].css',
     }),
     ...htmlGlobPlugins()
   ]
