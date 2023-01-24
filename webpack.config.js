@@ -17,10 +17,9 @@ const htmlGlobPlugins = () => {
   const htmlEntries = entries(['./src/*.html']);
   return Object.keys(htmlEntries).map((key) =>
     new HtmlWebpackPlugin({
+      filename: `${__dirname}/docs/${key}.html`,
+      template: `${__dirname}/src/${key}.html`,
       inject: 'head',
-      filename: `${key}.html`,
-      template: `src/${key}.html`,
-      chunks: [key],
     })
   );
 };
