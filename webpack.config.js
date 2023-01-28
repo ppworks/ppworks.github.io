@@ -25,7 +25,7 @@ const htmlGlobPlugins = () => {
 };
 
 module.exports = {
-  entry: entries(['./src/js/*.js', './src/css/*.scss']),
+  entry: entries(['./src/js/*.js', './src/css/*.css']),
   output: {
     path: `${__dirname}/docs`,
     filename: './js/[name].js',
@@ -34,7 +34,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
