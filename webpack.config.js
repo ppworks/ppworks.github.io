@@ -17,7 +17,7 @@ const htmlGlobPlugins = () => {
   const htmlEntries = entries(['./src/*.html']);
   return Object.keys(htmlEntries).map((key) =>
     new HtmlWebpackPlugin({
-      filename: `${__dirname}/docs/${key}.html`,
+      filename: `${__dirname}/dist/${key}.html`,
       template: `${__dirname}/src/${key}.html`,
       inject: 'head',
     })
@@ -27,7 +27,7 @@ const htmlGlobPlugins = () => {
 module.exports = {
   entry: entries(['./src/js/*.js', './src/css/*.css']),
   output: {
-    path: `${__dirname}/docs`,
+    path: `${__dirname}/dist`,
     filename: './js/[name].js',
     clean: true
   },
